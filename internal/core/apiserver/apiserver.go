@@ -49,7 +49,8 @@ func (s *APIServer) configureRouter() {
 	handler := handlers.CreateHandler(s.logger, s.service)
 
 	s.router.HandleFunc("/tasks/create", handler.CreateNewTasksHandler()).Methods("POST")
-	s.router.HandleFunc("/tasks/", handler.GetAllTasksHandler()).Methods("GET")
+	s.router.HandleFunc("/tasks/{id}/start", handler.StartTaskHandler()).Methods("POST")
+	s.router.HandleFunc("/tasks", handler.GetAllTasksHandler()).Methods("GET")
 	s.router.HandleFunc("/tasks/{id}", handler.GetTaskHandler()).Methods("GET")
 	s.router.HandleFunc("/tasks/{id}", handler.DeleteTaskHandler()).Methods("DELETE")
 }
