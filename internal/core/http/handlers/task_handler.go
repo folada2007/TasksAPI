@@ -32,6 +32,7 @@ func (h *Handler) CreateNewTasksHandler() http.HandlerFunc {
 
 		err := utils.DecodeJSONBody(r, &taskReq)
 		if err != nil {
+			h.logger.WithError(err).Error("Error in reading request body")
 			if err = utils.RespondWithErrors(w, http.StatusBadRequest, "Invalid JSON"); err != nil {
 				h.logger.WithError(err).Error("Failed to respond with 400")
 			}
