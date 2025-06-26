@@ -1,7 +1,7 @@
 package main
 
 import (
-	"LongTaskAPI/internal/core/apiserver"
+	apiserver2 "LongTaskAPI/internal/apiserver"
 	"LongTaskAPI/internal/repository/in_memory"
 	"LongTaskAPI/internal/services"
 	"flag"
@@ -17,7 +17,7 @@ func main() {
 	flag.StringVar(&pathToConfig, "path", "config/apiserver.toml", "Path to config file")
 	flag.Parse()
 
-	cfg := apiserver.NewConfig()
+	cfg := apiserver2.NewConfig()
 
 	_, err := toml.DecodeFile(pathToConfig, cfg)
 	if err != nil {
@@ -27,7 +27,7 @@ func main() {
 	repo := in_memory.NewInMemoryTaskRepo()
 	service := services.NewTaskService(repo)
 
-	api := apiserver.New(cfg, service)
+	api := apiserver2.New(cfg, service)
 
 	err = api.Run()
 	if err != nil {

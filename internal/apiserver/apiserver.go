@@ -1,7 +1,7 @@
 package apiserver
 
 import (
-	"LongTaskAPI/internal/core/http/handlers"
+	"LongTaskAPI/internal/http/handlers"
 	"LongTaskAPI/internal/services"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
